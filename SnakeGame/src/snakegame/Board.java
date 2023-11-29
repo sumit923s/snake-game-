@@ -1,6 +1,6 @@
 package snakegame;
 
-//Shift F11 se hum lig jaar bana sakte hain, kuch bhi agar saved nahi hai to save ho jaaega
+//By using shift 11 we can create jaar
 //Color class is inside awt package
 //import java.awt.Color;
 import java.awt.*;
@@ -29,9 +29,9 @@ public class Board extends JPanel implements ActionListener {
     private final int x[] = new int[ALL_DOTS];
     private final int y[] = new int[ALL_DOTS];
     
-//    ye hum variable ke saath bhi le sakte hain kyonki jab ek aple kha lega tab enext apple generate hoga
+//    This can also be taken bt an apple , because when one apple eat than new apple generates.
  
-//    initially yeh right direction me hi move karega,isliye wo true hai
+//   Initially it moves to the right direction
     private boolean leftDirection = false;
     private boolean rightDirection = true;
     private boolean upDirection = false;
@@ -52,7 +52,7 @@ public class Board extends JPanel implements ActionListener {
           setBackground(Color.BLACK);
           
           setPreferredSize(new Dimension(400,400));
-//          jab bhi game run hoga shift f6 se to click bahi karna parega direct game run ho jaaega
+
           setFocusable(true);
           
           loadImages();
@@ -60,7 +60,7 @@ public class Board extends JPanel implements ActionListener {
 //          function to initilize the game
           initGame();
     }
-//    loadImage function uper rahega initgame function ke tabhi initgame function initilize ho paaega
+//    loadImage function will always be on upper side so it will initilize
     public void loadImages(){
         
 //        ImageIcon is class which take icons from resource , getSystemResorce is a static variable
@@ -74,7 +74,7 @@ public class Board extends JPanel implements ActionListener {
     }
     
     public void initGame(){
-//        because 1 head hoga and 2 uske piche apple honge,global declaration needed 
+//        
         dots = 3;
         
         for(int i =0;i<dots; i++){
@@ -83,7 +83,7 @@ public class Board extends JPanel implements ActionListener {
         }
         locateStrawberry();
       
-//        har 140 second ke baad yeh ActionListener ko call karta jaaega
+//       ActionListener will call after every 140 milli seconds
          timer = new Timer(120,this);
           timer.start();
          
@@ -97,11 +97,11 @@ public class Board extends JPanel implements ActionListener {
         strawberry_y = r*DOT_SIZE;
     }
     
-//    3 images strawberry,head,tail ko show karna hai to  paintCompoinent method ko use karna hoga
-//    paintComponent is a method of graphic class
+//    Paint component is used to show all three images that is strawberry,head,tail 
+    //    paintComponent is a method of graphic class
     @Override
     public void paintComponent(Graphics g){
-//        calling parent component paintComponent with super class,ye khaas baat hai
+//        calling parent component paintComponent with super class
         super.paintComponent(g);
         
         draw(g);
@@ -120,7 +120,7 @@ public class Board extends JPanel implements ActionListener {
                 g.drawImage(tail, x[i], y[i], this);
             }
         }
-//        default toolkit function se initilize kar rahe hain ,sync function is also calling
+ 
         Toolkit.getDefaultToolkit().sync();
         }
         
@@ -141,9 +141,9 @@ public class Board extends JPanel implements ActionListener {
     
     public void move(){
         
-//        ye loop sirf head ke piche waale element ko move kar rahai hai,head ko nahi
+//         This loop only moves all the element except head
         for (int i=dots;i>0;i--){
-//            jo piche waali dot hai wah pehle waali dot ko jagah le lega,head ke respect me
+//            follower dots take the place of precedding dots 
             x[i] = x[i - 1];
             y[i] = y[i - 1];
         }
@@ -163,7 +163,7 @@ public class Board extends JPanel implements ActionListener {
         if (downDirection){
             y[0] = y[0] + DOT_SIZE;
         }
-//        ye code head ko move kar raha hai
+//        This code moves the head
 //        x[0] += DOT_SIZE;
 //        y[0] += DOT_SIZE;
     }
@@ -177,7 +177,7 @@ public class Board extends JPanel implements ActionListener {
     
     public void checkCollision(){
         for(int i =dots;i>0;i--){
-//            agar i>4 hai tabhi collision hooga else nahi ho paaega
+//            If i>4 than collission occurs only.
             if((i>4) && (x[0] == x[i]) && (y[0] == y[i])){
                 inGame = false;
             }
